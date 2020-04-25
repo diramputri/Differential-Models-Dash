@@ -1,6 +1,7 @@
 library(shiny)
 library(phaseR)
 library(deSolve)
+library(yaml)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -10,27 +11,28 @@ ui <- fluidPage(
    
    # Sidebar with a slider input for number of bins 
    sidebarLayout(
-      sidebarPanel(h4("Parameter Space"),width = 3,
-         sliderInput("bins",
-                     "Number of bins:",
+      sidebarPanel(h4("Configuration"),width = 3,
+         fileInput('config',"Config File",
+                   multiple = FALSE,
+                   accept = ".yaml"),
+         sliderInput("points",
+                     "Points:",
                      min = 1,
                      max = 50,
-                     value = 30)
+                     value = 20)
       ),
       
       # Show a plot of the generated distribution
       mainPanel(
-         plotOutput("nullclines")
+         #plotOutput("nullclines")
       )
+      
    )
 )
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
   
-  output$nullclines <- nullclines(LVmodel,xlim = c(-10, 10),ylim = c(-10, 10),
-                                   parameters = c(10,5,3,7),points = 20,lwd=2,
-                                   col=c("red","blue"))
 }
 
 # Run the application 

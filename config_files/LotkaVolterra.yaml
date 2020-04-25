@@ -1,0 +1,15 @@
+variables:
+    1: x
+    2: y
+ 
+parameters:
+    1: alpha
+    2: beta
+    3: delta
+    4: gamma
+    
+equations:
+    1: alpha*x - beta*x*y
+    2: delta*x*y - gamma*y
+    
+    
